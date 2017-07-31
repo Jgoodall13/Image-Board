@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lemonada" rel="stylesheet">
+        <title>Image Upload</title>
+    </head>
+    <body>
+
+        <nav>
+            <a href="#images"><img id="logo" src="logosmall.png" alt=""></a><br>
+            <a class="navy" href="#upload">Upload</a>
+        </nav>
+
+        <div class="modal"></div>
+        <div id="main"></div>
+
+
+        <template id="upload">
+            <a href="#images"><img id="logo2" src="logo.png" alt=""></a><br>
+            <form class="img-src">
+                <h2>Give some candy</h2>
+                <label>USERNAME <sup>*</sup></label><br>
+                <input class="user-info" type="text" name="username" required><br>
+                <label>TITLE <sup>*</sup></label><br>
+                <input class="user-info" type="text" name="title" required><br>
+                <label>DESCRIPTION</label><br>
+                <input class="user-info" type="text" name="description" required><br>
+                <input class="user-buttons" id="file" type="file" name="file" value="file" required>
+                <button class="user-buttons" id="button" type="button">Submit</button>
+            </form>
+        </template>
+
+    <template id="images">
+        {{#images}}
+        <div id="img-box">
+            <h3>{{title}}</h3>
+                <a href="#image/{{id}}"><img id="small-img" src="{{url}}"></a>
+                <h3 id="whatever">{{username}}</h3>
+                <p>{{description}}</p>
+        </div>
+        {{/images}}
+        <!-- <div id="more-div">
+            <button id="more" type="button">More Please</button>
+        </div> -->
+    </template>
+
+    <template id="image">
+        {{#images}}
+        <div id="big-img-box">
+        <h2>{{title}}</h2>
+        <img id="big-img" src="https://jacobimageboard.s3.amazonaws.com/{{image}}">
+        <h4>{{username}}</h4>
+        <p>{{description}}</p>
+        </div>
+        {{/images}}
+        <form class="comments">
+            <label id="username-post">Username <sup>*</sup></label><br>
+            <input id="username-comment" type="text"><br>
+            <label id="posting">Post a comment!</label><br>
+            <input id="comment-box" type="text" name="commment-box"><br>
+            <button id="comment-button" type="button">Post!</button>
+        </form>
+        <div class="uploaded-comments">
+            <h2 id="h2-post">Comments on this image</h2>
+                {{#comments}}
+                    <h3 id="old-users"><u>user</u>: {{username}}</h3>
+                    <h3 id="pink-comment"><u>comment</u>: {{comment}}</h3>
+                {{/comments}}
+        </div>
+    </template>
+
+    <script src='/js/handlebars.min.js'></script>
+    <script src="/js/jquery-3.1.1.min.js"></script>
+    <script src='/js/underscore-min.js'></script>
+    <script src="/js/backbone-min.js"></script>
+    <script src="script.js"></script>
+    </body>
+</html>

@@ -1,0 +1,272 @@
+nav {
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid black;
+}
+
+#logo{
+    height: 200px;
+}
+
+#logo:hover{
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: url('logosmallpink.png') no-repeat;
+
+}
+
+#logo2{
+    margin-top: 200px;
+}
+
+#logo2:hover{
+    display: block;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: url('logo2.png') no-repeat;
+}
+
+.img-src{
+    color: white;
+    margin-top: 230px;
+}
+
+.modal{
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 100%;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+}
+
+.navy{
+    color: #166ea6;
+    text-decoration: none;
+    font-size: 30px;
+    font-family: 'Josefin Sans'
+}
+
+a:hover{
+    color: hotpink;
+}
+
+label{
+    font-family: Georgia;
+    font-size: 13px;
+}
+
+sup{
+    color: red;
+}
+
+.user-info {
+    width: 364px;
+    height: 28px;
+    margin-bottom: 20px;
+    font-family: Georgia, serif;
+    font-size: 18px;
+    background-color: #7cd0c6;
+    border: 4px solid #32a3ad;
+}
+
+.user-info:focus{
+    border: 4px solid #075e6a;
+    outline-width: 0;
+}
+
+#button{
+    width: 130px;
+    height: 34px;
+    background-color: #7cd0c6;
+    border-radius: 5px;
+    font-family: Georgia, serif;
+    font-size: 18px;
+    border: none;
+}
+
+#button:hover{
+    background-color: #32a3ad;
+    cursor: pointer;
+
+}
+
+#comment-button{
+    width: 130px;
+    height: 34px;
+    background-color: #7cd0c6;
+    border-radius: 5px;
+    font-family: Georgia, serif;
+    font-size: 18px;
+    border: none;
+    margin-bottom: 30px;
+}
+
+#comment-button:hover{
+    background-color: #32a3ad;
+    cursor: pointer;
+
+}
+
+#more{
+    width: 130px;
+    height: 34px;
+    background-color: #7cd0c6;
+    border-radius: 5px;
+    font-family: Georgia, serif;
+    font-size: 18px;
+    border: none;
+}
+
+#more:hover{
+    background-color: #32a3ad;
+    cursor: pointer;
+
+}
+
+#more-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+#comment-box{
+    width: 364px;
+    height: 28px;
+    margin-bottom: 20px;
+    font-family: Georgia, serif;
+    font-size: 18px;
+    background-color: #7cd0c6;
+    border: 4px solid #32a3ad;
+}
+
+#comment-box:focus{
+    border: 4px solid #075e6a;
+    outline-width: 0;
+}
+
+#username-comment{
+    width: 364px;
+    height: 28px;
+    margin-bottom: 20px;
+    font-family: Georgia, serif;
+    font-size: 18px;
+    background-color: #7cd0c6;
+    border: 4px solid #32a3ad;
+}
+
+#username-comment:focus{
+    border: 4px solid #075e6a;
+    outline-width: 0;
+}
+
+#comment-button:hover{
+    cursor: pointer;
+}
+
+#username-post{
+    font-size: 20px;
+    font-family: 'josefin sans';
+}
+
+#posting{
+    font-size: 20px;
+    font-family: 'josefin sans';
+}
+
+h3{
+    font-family: 'josefin sans';
+}
+
+#whatever{
+    color: #166ea6;
+}
+
+p{
+    font-family: 'josefin sans';
+}
+
+#small-img {
+    max-width: 300px;
+    max-height: 200px;
+}
+
+#big-img {
+    max-width: 800px;
+    max-height: 800px;
+
+}
+
+#img-box{
+    float: left;
+    height: 400px;
+    width: 300px;
+    text-align: center;
+    margin-left: 5cdpx;
+    margin-bottom: 20px;
+}
+
+#img-box:hover{
+    color: hotpink;
+    cursor: pointer;
+}
+
+#big-img-box{
+    text-align: center;
+}
+
+.uploaded-comments{
+    height:50vh;
+    overflow: auto;
+    background-color: #7cd0c6;
+    border: 4px solid #32a3ad;
+}
+
+
+.comment{
+    color: hotpink;
+    text-align: center;
+}
+
+#old-users{
+    text-align: center;
+}
+
+.user-tag{
+    text-align: center;
+}
+
+#pink-comment{
+    color: hotpink;
+    text-align: center;
+}
+
+h2 {
+    font-family: 'Lemonada', cursive;
+    font-size: 2em;
+    font-weight: 800;
+
+}
+
+#h2-post{
+    text-align: center;
+}
+
+#user-upload{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#other_comment {
+    color: black;
+}
+
+#other_author {
+    color: black;
+    font-size: 0.6em;
+    font-weight: bold;
+}
