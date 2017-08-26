@@ -1,1 +1,20 @@
-This Image board application is designed to allow users to upload an image to the main page. Once in the main page, users can open up any of the uploaded images and comment on them. The comments appear live and old comments are shown through a database. The application was made using backbone.js. 
+# Image board Project
+
+## Overview
+
+This application is a full stack project where users can upload and share an image of their favorite Scandinavians.
+
+## Technology
+
+-- Image board application built with Backbone and Express --
+ - Utilized Backbone, Node, Express, HTML/CSS, JavaScript, PostgresSQL, and jQuery.
+ - Application allows users to upload a photo using Amazon S3.
+ - When viewing images, users can comment and see other comments from all
+
+
+
+This website brings users to an upload page where they can share an image. The user can also create their username, title, and description of the image.
+![](public/pic1.png)
+
+Users can also go right to the main image board page by clicking on the main icon. This takes the user to the main page where users can see the other images that have been uploaded. The user then can click on any image to see a larger version and comment on the image as well.
+![](public/pic2.gif)
