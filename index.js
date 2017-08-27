@@ -7,7 +7,9 @@ var path = require('path');
 var spicedPg = require('spiced-pg');
 var db = spicedPg(process.env.DATABASE_URL || 'postgres:postgres:password@localhost:5432/imageboard');
 var bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 
 const fn = require('./functions.js');
 
@@ -30,13 +32,13 @@ const client = knox.createClient({
 
 
 var diskStorage = multer.diskStorage({
-    destination: function (req, file, callback) {
+    destination: function(req, file, callback) {
         callback(null, __dirname + '/uploads');
     },
-    filename: function (req, file, callback) {
-      uidSafe(24).then(function(uid) {
-          callback(null, uid + path.extname(file.originalname));
-      });
+    filename: function(req, file, callback) {
+        uidSafe(24).then(function(uid) {
+            callback(null, uid + path.extname(file.originalname));
+        });
     }
 });
 
@@ -76,7 +78,7 @@ app.post('/upload', uploader.single('file'), function(req, res) {
         });
         console.log("nope");
     }
-    db.query("INSERT INTO images (image, username, title, description) values ($1,$2,$3,$4)", [req.file.filename, req.body.username, req.body.title, req.body.description]).catch(function(err){
+    db.query("INSERT INTO images (image, username, title, description) values ($1,$2,$3,$4)", [req.file.filename, req.body.username, req.body.title, req.body.description]).catch(function(err) {
         console.log(err);
     });
 });
@@ -85,13 +87,15 @@ app.get('/upload', function(req, res) {
     res.sendFile(__dirname + "/public/index.html");
 });
 
-app.get('/images', function(req, res){
+app.get('/images', function(req, res) {
     db.query('SELECT * FROM IMAGES ORDER BY created_at DESC LIMIT 8').then(function(results) {
         console.log(results.rows);
         for (var i = 0; i < results.rows.length; i++) {
             results.rows[i].url = require('./config.json').s3Url + results.rows[i].image;
         }
-        res.json({images: results.rows});
+        res.json({
+            images: results.rows
+        });
     }).catch(function(err) {
         console.log(err);
     });
@@ -102,18 +106,25 @@ app.get('/image/:id', (req, res) => {
     db.query("SELECT * FROM images WHERE id = $1", [req.params.id])
         .then((results) => {
             fn.showAllComments(req.params.id)
-            .then((comments) => {
-                console.log(results.rows);
-                res.json({images: results.rows, comments: comments});
-            });
+                .then((comments) => {
+                    console.log(results.rows);
+                    res.json({
+                        images: results.rows,
+                        comments: comments
+                    });
+                });
         });
 });
 
-app.post('/image:id', function(req,res) {
+app.post('/image:id', function(req, res) {
     console.log("we posting in image");
     console.log(req.body);
     db.query("INSERT INTO comments (image_id, username, comment) VALUES ($1,$2,$3)", [req.body.image_id, req.body.user, req.body.comment]).then((results) => {
-        res.json({comment:req.body.comment,image_id:req.body.image_id,user:req.body.user});
+        res.json({
+            comment: req.body.comment,
+            image_id: req.body.image_id,
+            user: req.body.user
+        });
         console.log(results);
     });
 });

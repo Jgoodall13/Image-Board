@@ -1,4 +1,4 @@
-const knox = require ('knox');
+const knox = require('knox');
 var spicedPg = require('spiced-pg');
 var db = spicedPg(process.env.DATABASE_URL || 'postgres:postgres:password@localhost:5432/imageboard');
 let secrets;
@@ -16,13 +16,13 @@ const client = knox.createClient({
 
 
 exports.showAllComments = (imageID) => {
-    return new Promise (function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
         var query = "SELECT * FROM comments WHERE image_id = $1 ORDER BY created_at DESC";
         db.query(query, [imageID])
-        .then((results) => {
-            resolve(results.rows);
-        }).catch((error) => {
-            reject(error);
-        });
+            .then((results) => {
+                resolve(results.rows);
+            }).catch((error) => {
+                reject(error);
+            });
     });
 };

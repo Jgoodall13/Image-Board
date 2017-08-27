@@ -1,16 +1,15 @@
 Handlebars.templates = Handlebars.templates || {};
 
- var templates = document.querySelectorAll('template');
+var templates = document.querySelectorAll('template');
 
- Array.prototype.slice.call(templates).forEach(function(tmpl) {
-     Handlebars.templates[tmpl.id] = Handlebars.compile(tmpl.innerHTML.replace(/{{&gt;/g, '{{>'));
- });
+Array.prototype.slice.call(templates).forEach(function(tmpl) {
+    Handlebars.templates[tmpl.id] = Handlebars.compile(tmpl.innerHTML.replace(/{{&gt;/g, '{{>'));
+});
 
- Handlebars.partials = Handlebars.templates;
+Handlebars.partials = Handlebars.templates;
 
 var main = $('#main');
 
-//All the cool kids are doing this now I guess
 //***************ROUTER**************//
 var Router = Backbone.Router.extend({
     routes: {
@@ -28,7 +27,9 @@ var Router = Backbone.Router.extend({
     image: function(id) {
         main.off();
         new ImageView({
-            model: new ImageModel({id:id}),
+            model: new ImageModel({
+                id: id
+            }),
             el: '#main'
         });
     },
@@ -69,48 +70,50 @@ var UploadModel = Backbone.Model.extend({
 
 //*****************VIEWS**************//
 var ImagesView = Backbone.View.extend({
-    initialize: function(){
+    initialize: function() {
         var view = this;
         this.model.on('change', function() {
             view.render();
         });
     },
-    render: function(){
-        $('.modal').css({visibility: 'hidden'});
+    render: function() {
+        $('.modal').css({
+            visibility: 'hidden'
+        });
         var html = Handlebars.templates.images(this.model.toJSON());
         this.$el.html(html);
         console.log("images render success");
     },
     events: {
-        'click h1': function(){
+        'click h1': function() {
             console.log('click working');
         }
     }
 });
 
 var ImageView = Backbone.View.extend({
-    initialize: function(){
+    initialize: function() {
         var view = this;
         this.model.on('change', function() {
             view.render();
         });
     },
-    render: function(){
+    render: function() {
         var html = Handlebars.templates.image(this.model.toJSON());
         this.$el.html(html);
         console.log('Image render success');
     },
     events: {
-        'click #comment-button': function(){
+        'click #comment-button': function() {
             $.post('/image:id', {
-                image_id: window.location.hash.split("/")[1],
-                user: $('#username-comment').val(),
-                comment: $('#comment-box').val()
-            },
-            function(data) {
-                $('#username-comment, #comment-box').val(""),
-                $("<h2 class='user-tag'><u>user</u>: "+data.user+"</h2><h2 class='comment'><u>comment</u>: "+data.comment+"</h2>").insertAfter( "#h2-post" ).hide().slideDown();
-            });
+                    image_id: window.location.hash.split("/")[1],
+                    user: $('#username-comment').val(),
+                    comment: $('#comment-box').val()
+                },
+                function(data) {
+                    $('#username-comment, #comment-box').val(""),
+                        $("<h2 class='user-tag'><u>user</u>: " + data.user + "</h2><h2 class='comment'><u>comment</u>: " + data.comment + "</h2>").insertAfter("#h2-post").hide().slideDown();
+                });
         }
     }
 });
@@ -118,18 +121,20 @@ var ImageView = Backbone.View.extend({
 
 
 var UploadView = Backbone.View.extend({
-    initialize: function(){
+    initialize: function() {
         var view = this;
         view.render();
     },
     render: function() {
-        $('.modal').css({visibility: 'visible'});
+        $('.modal').css({
+            visibility: 'visible'
+        });
         var html = Handlebars.templates.upload;
         this.$el.html(html);
         console.log('upload render success');
     },
     events: {
-        'click #button': function(){
+        'click #button': function() {
             console.log('click ajax success');
             var file = $('input[type="file"]').get(0).files[0];
             var username = $('input[name="username"').val();
@@ -148,7 +153,7 @@ var UploadView = Backbone.View.extend({
                 data: formData,
                 processData: false,
                 contentType: false,
-                success: function(data){
+                success: function(data) {
                     console.log(data);
                     window.location.replace("/#images");
                 }
